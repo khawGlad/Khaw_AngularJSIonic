@@ -1,4 +1,3 @@
-
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -57,14 +56,17 @@ angular.module('starter', ['ionic'])
       }
     })
 
+
   $urlRouterProvider.otherwise('/tab/home');
 })
 
 
-.controller('ListController', ['$scope', '$http', '$state', function($scope, $http, $state) {
+.controller('ListController', ['$scope', '$http', '$state',
+    function($scope, $http, $state) {
     $http.get('js/data.json').success(function(data) {
       $scope.artists = data;
       $scope.whichartist=$state.params.aId;
+      $scope.data = { showDelete: false, showReorder: false };
 
       $scope.onItemDelete = function(item) {
         $scope.artists.splice($scope.artists.indexOf(item), 1);
